@@ -1,0 +1,15 @@
+# Godot 4+
+.godot/
+.import/
+.export/
+.android/
+
+# Mono / C# (safe even if unused)
+.mono/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Temp / backups
+*.tmp
