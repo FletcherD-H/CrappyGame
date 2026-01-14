@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://6il3qtg0s6mg"]
+
+[ext_resource type="PackedScene" uid="uid://phahr0frx63f" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://e5jo7v5buwgm" path="res://scenes/zombie.tscn" id="2_sugp2"]
+[ext_resource type="Script" uid="uid://blgc1n8gu1p4q" path="res://scripts/zombie.gd" id="3_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://pru0nugoqyxy" path="res://assets/sprites/wall.png" id="4_jyhfs"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jyhfs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyhfs"]
+size = Vector2(1000, 20)
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_o5qli")]
+position = Vector2(812, 460)
+
+[node name="Zombie" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_sugp2")]
+position = Vector2(471, 437)
+script = ExtResource("3_jyhfs")
+player = NodePath("../Player")
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(754, 370)
+collision_layer = 4
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_jyhfs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+shape = SubResource("RectangleShape2D_jyhfs")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall"]
+texture = ExtResource("4_jyhfs")
+
+[node name="Wall2" type="StaticBody2D" parent="."]
+position = Vector2(754, 1350)
+collision_layer = 4
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_jyhfs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+shape = SubResource("RectangleShape2D_jyhfs")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall2"]
+texture = ExtResource("4_jyhfs")
+
+[node name="Wall3" type="StaticBody2D" parent="."]
+position = Vector2(1244, 860)
+rotation = 1.5707964
+collision_layer = 4
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_jyhfs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall3"]
+shape = SubResource("RectangleShape2D_jyhfs")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall3"]
+texture = ExtResource("4_jyhfs")
+
+[node name="Wall4" type="StaticBody2D" parent="."]
+position = Vector2(264, 860)
+rotation = 1.5707964
+collision_layer = 4
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_jyhfs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall4"]
+shape = SubResource("RectangleShape2D_jyhfs")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall4"]
+texture = ExtResource("4_jyhfs")
