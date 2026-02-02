@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://phahr0frx63f" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://e5jo7v5buwgm" path="res://scenes/zombie.tscn" id="2_sugp2"]
-[ext_resource type="Script" uid="uid://blgc1n8gu1p4q" path="res://scripts/zombie.gd" id="3_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://pru0nugoqyxy" path="res://assets/sprites/wall.png" id="4_jyhfs"]
+[ext_resource type="Script" uid="uid://tv45avc2bnsl" path="res://scripts/zombiespawner.gd" id="5_tbgi4"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jyhfs"]
 
@@ -14,11 +14,6 @@ size = Vector2(1000, 20)
 
 [node name="Player" parent="." instance=ExtResource("1_o5qli")]
 position = Vector2(812, 460)
-
-[node name="Zombie" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_sugp2")]
-position = Vector2(471, 437)
-script = ExtResource("3_jyhfs")
-player = NodePath("../Player")
 
 [node name="Wall" type="StaticBody2D" parent="."]
 position = Vector2(754, 370)
@@ -69,3 +64,15 @@ shape = SubResource("RectangleShape2D_jyhfs")
 
 [node name="Sprite2D" type="Sprite2D" parent="Wall4"]
 texture = ExtResource("4_jyhfs")
+
+[node name="ZombieSpawner" type="Node2D" parent="."]
+position = Vector2(264, 860)
+rotation = 1.5707964
+script = ExtResource("5_tbgi4")
+zombie_scene = ExtResource("2_sugp2")
+
+[node name="Timer" type="Timer" parent="ZombieSpawner"]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="ZombieSpawner/Timer" to="ZombieSpawner" method="_on_timer_timeout"]
